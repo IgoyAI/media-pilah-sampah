@@ -1,13 +1,33 @@
-const itemsData = [
-    { emoji: '🛍️', type: 'reduce', text: 'Gunakan tas belanja kain' },
-    { emoji: '💧', type: 'reduce', text: 'Matikan keran saat tidak digunakan' },
-    { emoji: '♻️', type: 'recycle', text: 'Botol plastik' },
-    { emoji: '📄', type: 'recycle', text: 'Kertas bekas' },
-    { emoji: '🪣', type: 'reuse', text: 'Gunakan kembali ember' },
-    { emoji: '🍱', type: 'reuse', text: 'Kotak makan' }
+// Daftar item disusun per level untuk menambah variasi permainan
+const levels = [
+    [
+        { emoji: '🛍️', type: 'reduce', text: 'Gunakan tas belanja kain' },
+        { emoji: '💧', type: 'reduce', text: 'Matikan keran saat tidak digunakan' },
+        { emoji: '♻️', type: 'recycle', text: 'Botol plastik' },
+        { emoji: '📄', type: 'recycle', text: 'Kertas bekas' },
+        { emoji: '🪣', type: 'reuse', text: 'Gunakan kembali ember' },
+        { emoji: '🍱', type: 'reuse', text: 'Kotak makan' }
+    ],
+    [
+        { emoji: '🥤', type: 'reduce', text: 'Hindari sedotan plastik' },
+        { emoji: '🧴', type: 'reduce', text: 'Pilih kemasan isi ulang' },
+        { emoji: '📦', type: 'reuse', text: 'Kotak karton' },
+        { emoji: '👕', type: 'reuse', text: 'Jadikan kaos bekas lap' },
+        { emoji: '⚙️', type: 'recycle', text: 'Kaleng bekas' },
+        { emoji: '📰', type: 'recycle', text: 'Koran lama' }
+    ],
+    [
+        { emoji: '🍃', type: 'reduce', text: 'Gunakan kompos alami' },
+        { emoji: '💡', type: 'reduce', text: 'Matikan lampu saat tidak perlu' },
+        { emoji: '🛍️', type: 'reuse', text: 'Kantong belanja plastik' },
+        { emoji: '🧸', type: 'reuse', text: 'Mainan bekas' },
+        { emoji: '🥫', type: 'recycle', text: 'Kaleng makanan' },
+        { emoji: '🍶', type: 'recycle', text: 'Botol kaca' }
+    ]
 ];
 
-let remaining = itemsData.length;
+let currentLevel = 0;
+let remaining = 0;
 
 function createItem({ emoji, type, text }) {
     const div = document.createElement('div');
@@ -58,18 +78,47 @@ function dropItem(event) {
 
 function checkWin() {
     if (remaining === 0) {
-        document.getElementById('message').textContent = 'Selamat! Semua sampah berhasil dipilah.';
+        const msg = document.getElementById('message');
+        if (currentLevel < levels.length - 1) {
+            msg.innerHTML = `Selamat! Level ${currentLevel + 1} selesai.<br><button id="next-level">Lanjut</button>`;
+            msg.hidden = false;
+            document.getElementById('next-level').addEventListener('click', () => {
+                msg.hidden = true;
+                nextLevel();
+            });
+        } else {
+            msg.textContent = 'Selamat! Semua sampah berhasil dipilah.';
+            msg.hidden = false;
+        }
+    }
+}
+
+function startLevel() {
+    const itemsContainer = document.getElementById('items');
+    itemsContainer.innerHTML = '';
+    const levelItems = levels[currentLevel];
+    remaining = levelItems.length;
+    levelItems.forEach((data, index) => {
+        const item = createItem(data);
+        item.id = `item-${currentLevel}-${index}`;
+        itemsContainer.appendChild(item);
+    });
+    document.getElementById('level-indicator').textContent = `Level ${currentLevel + 1} dari ${levels.length}`;
+    document.getElementById('message').hidden = true;
+}
+
+function nextLevel() {
+    currentLevel++;
+    if (currentLevel < levels.length) {
+        startLevel();
+    } else {
+        document.getElementById('message').textContent = 'Selamat! Anda telah menyelesaikan semua level.';
         document.getElementById('message').hidden = false;
     }
 }
 
 function init() {
-    const itemsContainer = document.getElementById('items');
-    itemsData.forEach((data, index) => {
-        const item = createItem(data);
-        item.id = `item-${index}`;
-        itemsContainer.appendChild(item);
-    });
+    startLevel();
 
     document.querySelectorAll('.bin').forEach(bin => {
         bin.addEventListener('dragover', dragOver);
