@@ -27,10 +27,15 @@ header {
     padding: 0.5rem 1rem;
     cursor: grab;
     user-select: none;
+    font-size: 1.4rem;
+    transition: transform 0.2s;
 }
 
 .item.dragging {
     opacity: 0.5;
+}
+.item:hover {
+    transform: scale(1.1);
 }
 
 .bins {
@@ -48,6 +53,22 @@ header {
     border-radius: 8px;
     text-align: center;
     min-height: 150px;
+}
+.bin h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+.bin[data-type="reduce"] {
+    background: #ffe5e5;
+    border-color: #ff8a80;
+}
+.bin[data-type="reuse"] {
+    background: #fff4ce;
+    border-color: #ffb74d;
+}
+.bin[data-type="recycle"] {
+    background: #e5ffe5;
+    border-color: #81c784;
 }
 
 .bin.drag-over {

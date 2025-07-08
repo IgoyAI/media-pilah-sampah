@@ -6,7 +6,9 @@ const levels = [
         { emoji: '♻️', type: 'recycle', text: 'Botol plastik' },
         { emoji: '📄', type: 'recycle', text: 'Kertas bekas' },
         { emoji: '🪣', type: 'reuse', text: 'Gunakan kembali ember' },
-        { emoji: '🍱', type: 'reuse', text: 'Kotak makan' }
+        { emoji: '🍱', type: 'reuse', text: 'Kotak makan' },
+        { emoji: '🥤', type: 'reduce', text: 'Bawa tumbler sendiri' },
+        { emoji: '🔋', type: 'recycle', text: 'Baterai bekas' }
     ],
     [
         { emoji: '🥤', type: 'reduce', text: 'Hindari sedotan plastik' },
@@ -14,7 +16,9 @@ const levels = [
         { emoji: '📦', type: 'reuse', text: 'Kotak karton' },
         { emoji: '👕', type: 'reuse', text: 'Jadikan kaos bekas lap' },
         { emoji: '⚙️', type: 'recycle', text: 'Kaleng bekas' },
-        { emoji: '📰', type: 'recycle', text: 'Koran lama' }
+        { emoji: '📰', type: 'recycle', text: 'Koran lama' },
+        { emoji: '🥡', type: 'reuse', text: 'Wadah plastik bekas' },
+        { emoji: '🧂', type: 'reduce', text: 'Kurangi kemasan sekali pakai' }
     ],
     [
         { emoji: '🍃', type: 'reduce', text: 'Gunakan kompos alami' },
@@ -22,7 +26,17 @@ const levels = [
         { emoji: '🛍️', type: 'reuse', text: 'Kantong belanja plastik' },
         { emoji: '🧸', type: 'reuse', text: 'Mainan bekas' },
         { emoji: '🥫', type: 'recycle', text: 'Kaleng makanan' },
-        { emoji: '🍶', type: 'recycle', text: 'Botol kaca' }
+        { emoji: '🍶', type: 'recycle', text: 'Botol kaca' },
+        { emoji: '📱', type: 'recycle', text: 'Ponsel rusak' },
+        { emoji: '💼', type: 'reuse', text: 'Tas lama' }
+    ],
+    [
+        { emoji: '🥡', type: 'reduce', text: 'Bawa wadah makan sendiri' },
+        { emoji: '🌿', type: 'reduce', text: 'Gunakan daun sebagai pembungkus' },
+        { emoji: '📚', type: 'reuse', text: 'Sumbang buku lama' },
+        { emoji: '🪥', type: 'reuse', text: 'Gunakan sikat gigi lama untuk bersih-bersih' },
+        { emoji: '🧃', type: 'recycle', text: 'Kotak minuman karton' },
+        { emoji: '💻', type: 'recycle', text: 'Elektronik bekas' }
     ]
 ];
 
